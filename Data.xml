@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<items>
+    <car id="1">
+        <name>Citroen</name>
+        <price>9000</price>
+        <type>PassengerCar</type>
+        <consumption>7</consumption>
+     </car>
+    <car id="2">
+        <name>Volvo</name>
+        <price>1200</price>
+        <type>Passenger Car</type>
+        <consumption>8</consumption>
+    </car>
+    <car id="3">
+        <name>Volvo</name>
+        <price>9000</price>
+        <type>Minibus Car</type>
+        <consumption>12</consumption>
+    </car>
+    <car id="4">
+        <name>Man</name>
+        <price>23000</price>
+        <type>Truck</type>
+        <consumption>22</consumption>
+    </car>
+    <car id="5">
+        <name>Citroen</name>
+        <price>12000</price>
+        <type>Minibus Car</type>
+        <consumption>11</consumption>
+    </car>
+</items>
