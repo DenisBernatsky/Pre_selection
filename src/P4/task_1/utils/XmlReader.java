@@ -5,61 +5,35 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
+import org.xml.sax.InputSource;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import java.io.File;
-import java.io.IOException;
+import javax.xml.xpath.XPath;
+import javax.xml.xpath.XPathConstants;
+import javax.xml.xpath.XPathExpressionException;
+import javax.xml.xpath.XPathFactory;
+import java.io.*;
 
-public class XmlReader  implements DataInterface{
+public class XmlReader{
 
-    private String file;
-    private DocumentBuilderFactory inst = DocumentBuilderFactory.newInstance();
-
+    private final File file;
     public XmlReader(String file) {
-        this.file = file;
+        this.file =  new File(file);
     }
 
-
-    @Override
-    public int getId() throws ParserConfigurationException, IOException, SAXException {
-        DocumentBuilder inst = DocumentBuilderFactory.newInstance().newDocumentBuilder();
-        Document document = inst.parse(new File("Data.xml"));
-        document.normalizeDocument();
-        Node root = document.getDocumentElement();
-        NodeList list = root.getChildNodes();
-        NodeList nodeList = document.getElementsByTagName("car");
-        for (int i = 0; i < nodeList.getLength(); i++) {
-            // Выводим информацию по каждому из найденных элементов
-            Node node = nodeList.item(i);
-            Element element = (Element) node;
-            String consumption = element.getElementsByTagName("consumption").item(0).getTextContent();
-
-
-
+    public Record getNode(String xpathExpression) {
+        try {
+            InputStream inputStream = new FileInputStream(file);
+            InputSource inputSource = new InputSource(inputStream);
+            XPath xpath = XPathFactory.newInstance().newXPath();
+            return new Record((Node) xpath.evaluate(xpathExpression, inputSource, XPathConstants.NODE));
+        } catch (FileNotFoundException | XPathExpressionException e) {
+            e.getMessage();
         }
-        return 0;
+        throw new AssertionError(String.format("Cannot find node by xpath '%s' in file: %s", xpathExpression, file));
     }
 
-    @Override
-    public int getPrice() {
-        return 0;
-    }
-
-    @Override
-    public int getConsumption() {
-        return 0;
-    }
-
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public String getType() {
-        return null;
-    }
 }

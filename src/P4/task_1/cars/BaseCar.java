@@ -13,6 +13,7 @@ public class BaseCar {
         this.consumption = consumption;
         this.price = price;
     }
+    public BaseCar(){}
 
     public String getCarName() {
         return carName;
@@ -41,6 +42,7 @@ public class BaseCar {
     public void getCarInfo(){
         System.out.println("Get base car info");
     }
+
     public int getId() {
         return id;
     }
@@ -51,6 +53,10 @@ public class BaseCar {
 
     public int getPrice() {
         return price;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
     }
 
 }
