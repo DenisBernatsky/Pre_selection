@@ -15,12 +15,12 @@ public class Runner {
         CarsDataXML data = new CarsDataXML();
         Taxis taxis = new Taxis();
         ArrayList<BaseCar> taxisCarsList = data.getCarListFromXml(FILE_NAME);
+        taxis.getAllCarsInfo(taxisCarsList);
 
-        for (BaseCar car: taxisCarsList) {
-            System.out.println(car.getCarName() + " " + car.getCarType() + " " + car.getPrice());
-
-        }
         taxis.getAllCarsPrice(taxisCarsList);
+
+        taxis.getAllCarsPrice(taxis.searchByPrice(1000, 13000, taxisCarsList));
+
 
     }
 
