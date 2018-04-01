@@ -2,27 +2,25 @@ package P4.task_1;
 
 import P4.task_1.cars.BaseCar;
 import P4.task_1.data.CarsDataXML;
+import P4.task_1.taxis.Taxis;
 import P4.task_1.utils.XmlReader;
 
 import java.util.ArrayList;
 
 public class Runner {
 
-    private static final String FILE_NAME = "notes.txt";
+    private static final String FILE_NAME = "Data.xml";
 
     public static void main(String[] args) {
-
-        int dataId = 2;
         CarsDataXML data = new CarsDataXML();
+        Taxis taxis = new Taxis();
+        ArrayList<BaseCar> taxisCarsList = data.getCarListFromXml(FILE_NAME);
 
-        int carValuesCount = (new XmlReader("Data.xml")).getNumberOfNodes("//items/car");
-        ArrayList<BaseCar> taxisCarsList = new ArrayList<>();
-        for (int i=1; i < carValuesCount+1; i++){
-            BaseCar car = (BaseCar) data.transformData(Integer.toString(i), "Data.xml");
-            taxisCarsList.add(car);
+        for (BaseCar car: taxisCarsList) {
+            System.out.println(car.getCarName() + " " + car.getCarType() + " " + car.getPrice());
+
         }
-
-        System.out.println(taxisCarsList.get(4).getCarName());
+        taxis.getAllCarsPrice(taxisCarsList);
 
     }
 

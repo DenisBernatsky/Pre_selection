@@ -11,6 +11,7 @@ public class PassengerCar extends BaseCar {
         super(carName, carType, consumption, price);
     }
 
+
     @Override
     public void getCarInfo() {
         System.out.println("Get passenger car info");
