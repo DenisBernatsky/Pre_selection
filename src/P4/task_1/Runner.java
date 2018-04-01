@@ -2,6 +2,9 @@ package P4.task_1;
 
 import P4.task_1.cars.BaseCar;
 import P4.task_1.data.CarsDataXML;
+import P4.task_1.utils.XmlReader;
+
+import java.util.ArrayList;
 
 public class Runner {
 
@@ -11,9 +14,15 @@ public class Runner {
 
         int dataId = 2;
         CarsDataXML data = new CarsDataXML();
-        BaseCar car = (BaseCar) data.transformData(Integer.toString(dataId));
-        System.out.println(car.getPrice());
 
+        int carValuesCount = (new XmlReader("Data.xml")).getNumberOfNodes("//items/car");
+        ArrayList<BaseCar> taxisCarsList = new ArrayList<>();
+        for (int i=1; i < carValuesCount+1; i++){
+            BaseCar car = (BaseCar) data.transformData(Integer.toString(i), "Data.xml");
+            taxisCarsList.add(car);
+        }
+
+        System.out.println(taxisCarsList.get(4).getCarName());
 
     }
 
