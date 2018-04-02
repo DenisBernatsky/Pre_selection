@@ -5,7 +5,7 @@ import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
 
-public class ReadAndWriteInFile {
+public class ReadAndWriteInFileUtils {
 
     public void writeInFile(String fileName, String text) {
         try (FileOutputStream fos = new FileOutputStream(fileName)) {

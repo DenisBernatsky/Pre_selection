@@ -6,11 +6,11 @@ import javax.xml.xpath.XPath;
 import javax.xml.xpath.XPathConstants;
 import javax.xml.xpath.XPathFactory;
 
-public class Record {
+public class XpathUtils {
 
     private Node node;
 
-    Record(Node node) {
+    XpathUtils(Node node) {
         this.node = node;
     }
 

@@ -8,7 +8,7 @@ public class Maps {
 
     private static int value = 1000000;
 
-    public void addElementsHashMap(){
+    public HashMap<String, Integer> addElementsHashMap(){
         final long startTime = System.currentTimeMillis();
         HashMap<String, Integer> set = new HashMap<String, Integer>();
         for (int i = 0; i < value; i++){
@@ -20,6 +20,7 @@ public class Maps {
 
         final long endTime = System.currentTimeMillis();
         System.out.println("Total execution time for add elements in HashMap: " + (endTime - startTime) + "ms");
+        return set;
     }
 
     public void addElementsTreeMap(){
@@ -34,6 +35,5 @@ public class Maps {
         final long endTime = System.currentTimeMillis();
         System.out.println("Total execution time for add elements in TreeMap: " + (endTime - startTime) + "ms");
     }
-
 
 }

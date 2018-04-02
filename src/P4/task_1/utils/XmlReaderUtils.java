@@ -13,19 +13,19 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
 
-public class XmlReader{
+public class XmlReaderUtils {
 
     private final File file;
-    public XmlReader(String file) {
+    public XmlReaderUtils(String file) {
         this.file =  new File(file);
     }
 
-    public Record getNode(String xpathExpression) {
+    public XpathUtils getNode(String xpathExpression) {
         try {
             InputStream inputStream = new FileInputStream(file);
             InputSource inputSource = new InputSource(inputStream);
             XPath xpath = XPathFactory.newInstance().newXPath();
-            return new Record((Node) xpath.evaluate(xpathExpression, inputSource, XPathConstants.NODE));
+            return new XpathUtils((Node) xpath.evaluate(xpathExpression, inputSource, XPathConstants.NODE));
         } catch (FileNotFoundException | XPathExpressionException e) {
             e.getMessage();
         }
