@@ -61,14 +61,4 @@ public class CarsDataSQL extends BaseData implements DataInterface{
         return mapListAllDBCars;
     }
 
-    public int getColumsCount(){
-        String sql = "SELECT COUNT(ID) FROM CARS";
-        ResultSet result  = dbUtils.getStatement(sql);
-        try {
-            return result.getMetaData().getColumnCount();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return 0;
-    }
 }
