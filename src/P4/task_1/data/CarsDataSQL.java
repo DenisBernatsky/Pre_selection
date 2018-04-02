@@ -12,7 +12,12 @@ import java.util.Map;
 
 public class CarsDataSQL extends BaseData implements DataInterface{
     private DBUtils dbUtils = new DBUtils();
-
+    private static String strType = "TYPE";
+    private static String strName = "NAME";
+    private static String strPrice = "PRICE";
+    private static String strConsumption = "CONSUMPTION";
+    private static String strID = "ID";
+    private static String sqlAllValues = "SELECT * FROM CARS";
 
     public ArrayList<BaseCar> getCarListFromEntity() {
         ArrayList<HashMap<String, String>> mapListAllDBCars = getListMapFromDb();
@@ -20,18 +25,18 @@ public class CarsDataSQL extends BaseData implements DataInterface{
         ArrayList<BaseCar> carList = new ArrayList<>();
         for (HashMap<String, String> map : mapListAllDBCars) {
             for (Map.Entry<String, String> entry : map.entrySet()) {
-                if (entry.getKey().equals("TYPE")){
+                if (entry.getKey().equals(strType)){
                     car = createCarByType(entry.getValue());
                         for (Map.Entry<String, String> dict : map.entrySet()){
-                            if (dict.getKey().equals("TYPE")){
+                            if (dict.getKey().equals(strType)){
                                 car.setCarType(dict.getValue());}
-                            if (dict.getKey().equals("NAME")){
+                            if (dict.getKey().equals(strName)){
                                 car.setCarName(dict.getValue());}
-                            if (dict.getKey().equals("PRICE")){
+                            if (dict.getKey().equals(strPrice)){
                                 car.setPrice(Integer.parseInt(dict.getValue()));}
-                            if (dict.getKey().equals("CONSUMPTION")){
+                            if (dict.getKey().equals(strConsumption)){
                                 car.setConsumption(Integer.parseInt(dict.getValue()));}
-                            if (dict.getKey().equals("ID")){
+                            if (dict.getKey().equals(strID)){
                                 car.setId(Integer.parseInt(dict.getValue()));
                             }
                         }
@@ -44,7 +49,7 @@ public class CarsDataSQL extends BaseData implements DataInterface{
     }
 
     private ArrayList<HashMap<String, String>> getListMapFromDb(){
-        ResultSet result = dbUtils.getStatement("SELECT * FROM CARS");
+        ResultSet result = dbUtils.getStatement(sqlAllValues);
         ArrayList<HashMap<String, String>> mapListAllDBCars = new ArrayList<>();
         try {
             ResultSetMetaData metaData = result.getMetaData();

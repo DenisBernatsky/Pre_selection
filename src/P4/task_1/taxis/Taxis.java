@@ -14,12 +14,12 @@ public class Taxis {
     private static final int PASSENGER_CAR_COUNT = 67;
     private static final int TRUCK_COUNT = 2;
 
-    public void getAllCarsPrice(ArrayList<BaseCar> list){
+    public String getAllCarsPrice(ArrayList<BaseCar> list){
         int price = 0;
         for (BaseCar i: list){
             price +=i.getPrice();
         }
-        System.out.println("Cars price: " + price + " USD");;
+        return "Cars price: " + price + " USD";
     }
 
     public void getAllCarsInfo(ArrayList<BaseCar> list){

@@ -1,7 +1,1 @@
-В файл записано: 
- Cars model: Volvo F34        id: 1
- Cars model: Volvo F34        id: 2
- Cars model: Volvo F34        id: 3
- Cars model: Volvo F34        id: 4
- Cars model: Volvo F34        id: 5
- 
+Cars price: 170280 USD
