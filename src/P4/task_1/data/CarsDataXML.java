@@ -22,14 +22,14 @@ public class CarsDataXML implements DataInterface{
     private static final String LOCATOR_TYPE = REX_EXP_FORMAT + "//type";
     private static final String LOCATOR_CONSUMPTION = REX_EXP_FORMAT + "//consumption";
     private static final String LOCATOR_PRICE = REX_EXP_FORMAT + "//price";
-    private static final String c = "//items/car";
+    private static final String LOCATOR_ALL_CARS = "//items/car";
     private String filePath;
 
     public CarsDataXML(String filePath) {
         this.filePath = filePath;
     }
     
-    private Object createCar(String id) {
+    public Object createCar(String id) {
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
         BaseCar car = createCarByType(info, id);
         car.setId((Integer.parseInt(info.findByXpath(String.format(LOCATOR_ID, id)))));
@@ -54,7 +54,7 @@ public class CarsDataXML implements DataInterface{
         }
     }
     public ArrayList<BaseCar> getCarListFromXml() {
-        int carValuesCount = (new XmlReaderUtils(filePath)).getNumberOfNodes(LOCATOR_ALL_ITEMS);
+        int carValuesCount = (new XmlReaderUtils(filePath)).getNumberOfNodes(LOCATOR_ALL_CARS);
         ArrayList<BaseCar> taxisCarsList = new ArrayList<>();
         for (int i=1; i < carValuesCount+1; i++){
             BaseCar car = (BaseCar) createCar(Integer.toString(i));
