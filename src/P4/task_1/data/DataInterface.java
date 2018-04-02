@@ -7,9 +7,9 @@ import java.io.IOException;
 
 public interface DataInterface {
 
-    int getId() throws ParserConfigurationException, IOException, SAXException;
-    int getPrice();
-    int getConsumption();
-    String getName();
-    String getType();
+    int getId(String id) throws ParserConfigurationException, IOException, SAXException;
+    int getPrice(String id);
+    int getConsumption(String id);
+    String getName(String id);
+    String getType(String id);
 }

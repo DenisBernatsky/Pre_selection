@@ -29,14 +29,14 @@ public class CarsDataXML implements DataInterface{
         this.filePath = filePath;
     }
     
-    public Object createCar(String id) {
+    private Object createCar(String id) {
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
         BaseCar car = createCarByType(info, id);
-        car.setId((Integer.parseInt(info.findByXpath(String.format(LOCATOR_ID, id)))));
-        car.setCarName((info.findByXpath(String.format(LOCATOR_NAME, id))));
-        car.setCarType((info.findByXpath(String.format(LOCATOR_TYPE, id))));
-        car.setConsumption((Integer.parseInt(info.findByXpath(String.format(LOCATOR_CONSUMPTION, id)))));
-        car.setPrice((Integer.parseInt(info.findByXpath(String.format(LOCATOR_PRICE, id)))));
+        car.setId(getId(id));
+        car.setCarName(getName(id));
+        car.setCarType(getType(id));
+        car.setConsumption(getConsumption(id));
+        car.setPrice(getPrice(id));
         return car;
     }
 
@@ -49,7 +49,7 @@ public class CarsDataXML implements DataInterface{
             case "Truck": {
                 return new Truck();}
             default:
-                throw new NullPointerException("Check cars type");
+                throw new NullPointerException("Current car type is not found");
 
         }
     }
@@ -64,27 +64,32 @@ public class CarsDataXML implements DataInterface{
     }
 
     @Override
-    public int getId() throws ParserConfigurationException, IOException, SAXException {
-        return 0;
+    public int getId(String id){
+        XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
+        return (Integer.parseInt(info.findByXpath(String.format(LOCATOR_ID, id))));
     }
 
     @Override
-    public int getPrice() {
-        return 0;
+    public int getPrice(String id) {
+        XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
+        return Integer.parseInt(info.findByXpath(String.format(LOCATOR_PRICE, id)));
     }
 
     @Override
-    public int getConsumption() {
-        return 0;
+    public int getConsumption(String id) {
+        XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
+        return Integer.parseInt(info.findByXpath(String.format(LOCATOR_CONSUMPTION, id)));
     }
 
     @Override
-    public String getName() {
-        return null;
+    public String getName(String id) {
+        XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
+        return info.findByXpath(String.format(LOCATOR_NAME, id));
     }
 
     @Override
-    public String getType() {
-        return null;
+    public String getType(String id) {
+        XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
+        return info.findByXpath(String.format(LOCATOR_TYPE, id));
     }
 }
