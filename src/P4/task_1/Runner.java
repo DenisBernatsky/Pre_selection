@@ -1,6 +1,7 @@
 package P4.task_1;
 
 import P4.task_1.cars.BaseCar;
+import P4.task_1.data.CarsDataSQL;
 import P4.task_1.data.CarsDataXML;
 import P4.task_1.taxis.Taxis;
 
@@ -12,6 +13,7 @@ public class Runner {
 
     public static void main(String[] args) {
         CarsDataXML data = new CarsDataXML(FILE_NAME);
+        CarsDataSQL dataSQL = new CarsDataSQL();
         Taxis taxis = new Taxis();
         ArrayList<BaseCar> taxisCarsList = data.getCarListFromXml();
         taxis.getAllCarsInfo(taxisCarsList);
@@ -20,6 +22,8 @@ public class Runner {
 
         taxis.getAllCarsPrice(taxis.searchByPrice(1000, 13000, taxisCarsList));
 
+        ArrayList<BaseCar> taxisCarsListDB = dataSQL.getCarListFromSQL();
+        taxis.getAllCarsPrice(taxisCarsListDB);
 
     }
 

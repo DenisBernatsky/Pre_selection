@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: org.apache.jackrabbit:jackrabbit-standalone:2.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/jackrabbit/jackrabbit-standalone/2.0-SNAPSHOT/jackrabbit-standalone-2.0-20090909.120236-314.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/jackrabbit/jackrabbit-standalone/2.0-SNAPSHOT/jackrabbit-standalone-2.0-20090909.120236-314-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/org/apache/jackrabbit/jackrabbit-standalone/2.0-SNAPSHOT/jackrabbit-standalone-2.0-20090909.120236-314-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

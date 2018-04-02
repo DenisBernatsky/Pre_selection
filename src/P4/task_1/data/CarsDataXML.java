@@ -1,19 +1,13 @@
 package P4.task_1.data;
 
 import P4.task_1.cars.BaseCar;
-import P4.task_1.cars.MinibusCar;
-import P4.task_1.cars.PassengerCar;
-import P4.task_1.cars.Truck;
-import P4.task_1.utils.XpathUtils;
 import P4.task_1.utils.XmlReaderUtils;
-import org.xml.sax.SAXException;
+import P4.task_1.utils.XpathUtils;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.util.ArrayList;
 
 
-public class CarsDataXML implements DataInterface{
+public class CarsDataXML extends BaseData implements DataInterface{
     
     private static final String REX_EXP_FORMAT = "//items/car[@id='%s']";
     private static final String LOCATOR_ALL_ITEMS = "//items";
@@ -24,71 +18,60 @@ public class CarsDataXML implements DataInterface{
     private static final String LOCATOR_PRICE = REX_EXP_FORMAT + "//price";
     private static final String LOCATOR_ALL_CARS = "//items/car";
     private String filePath;
+    private String id;
 
     public CarsDataXML(String filePath) {
         this.filePath = filePath;
     }
     
-    private Object createCar(String id) {
+    private BaseCar createCar(String id) {
+        this.id=id;
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
-        BaseCar car = createCarByType(info, id);
-        car.setId(getId(id));
-        car.setCarName(getName(id));
-        car.setCarType(getType(id));
-        car.setConsumption(getConsumption(id));
-        car.setPrice(getPrice(id));
+        BaseCar car = createCarByType(info.findByXpath(String.format(LOCATOR_TYPE, id)));
+        car.setId(getId());
+        car.setCarName(getName());
+        car.setCarType(getType());
+        car.setConsumption(getConsumption());
+        car.setPrice(getPrice());
         return car;
     }
 
-    private BaseCar createCarByType(XpathUtils info, String id){
-        switch (info.findByXpath(String.format(LOCATOR_TYPE, id))){
-            case "Passenger Car": {
-                return new PassengerCar();}
-            case "Minibus Car": {
-                return new MinibusCar();}
-            case "Truck": {
-                return new Truck();}
-            default:
-                throw new NullPointerException("Current car type is not found");
-
-        }
-    }
     public ArrayList<BaseCar> getCarListFromXml() {
         int carValuesCount = (new XmlReaderUtils(filePath)).getNumberOfNodes(LOCATOR_ALL_CARS);
         ArrayList<BaseCar> taxisCarsList = new ArrayList<>();
         for (int i=1; i < carValuesCount+1; i++){
-            BaseCar car = (BaseCar) createCar(Integer.toString(i));
+            BaseCar car = createCar(Integer.toString(i));
             taxisCarsList.add(car);
         }
         return taxisCarsList;
     }
 
     @Override
-    public int getId(String id){
+    public int getId(){
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
         return (Integer.parseInt(info.findByXpath(String.format(LOCATOR_ID, id))));
     }
 
     @Override
-    public int getPrice(String id) {
+    public int getPrice() {
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
         return Integer.parseInt(info.findByXpath(String.format(LOCATOR_PRICE, id)));
     }
 
     @Override
-    public int getConsumption(String id) {
+    public int getConsumption() {
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
         return Integer.parseInt(info.findByXpath(String.format(LOCATOR_CONSUMPTION, id)));
     }
 
     @Override
-    public String getName(String id) {
+    public String getName() {
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
         return info.findByXpath(String.format(LOCATOR_NAME, id));
     }
 
     @Override
-    public String getType(String id) {
+    public String getType() {
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
         return info.findByXpath(String.format(LOCATOR_TYPE, id));
     }
