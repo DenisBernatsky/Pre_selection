@@ -1,6 +1,5 @@
 package P4.task_1.utils;
 
-import P4.task_1.data.CarsDataSQL;
 import org.apache.derby.jdbc.EmbeddedDriver;
 
 import java.sql.*;

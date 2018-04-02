@@ -15,14 +15,14 @@ public class Runner {
         CarsDataXML data = new CarsDataXML(FILE_NAME);
         CarsDataSQL dataSQL = new CarsDataSQL();
         Taxis taxis = new Taxis();
-        ArrayList<BaseCar> taxisCarsList = data.getCarListFromXml();
+        ArrayList<BaseCar> taxisCarsList = data.getCarListFromEntity();
         taxis.getAllCarsInfo(taxisCarsList);
 
         taxis.getAllCarsPrice(taxisCarsList);
 
         taxis.getAllCarsPrice(taxis.searchByPrice(1000, 13000, taxisCarsList));
 
-        ArrayList<BaseCar> taxisCarsListDB = dataSQL.getCarListFromSQL();
+        ArrayList<BaseCar> taxisCarsListDB = dataSQL.getCarListFromEntity();
         taxis.getAllCarsPrice(taxisCarsListDB);
 
     }

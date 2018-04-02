@@ -1,15 +1,10 @@
 package P4.task_1.data;
 
-import org.xml.sax.SAXException;
+import P4.task_1.cars.BaseCar;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
+import java.util.ArrayList;
 
 public interface DataInterface {
 
-    int getId() throws ParserConfigurationException, IOException, SAXException;
-    int getPrice();
-    int getConsumption();
-    String getName();
-    String getType();
+    ArrayList<BaseCar> getCarListFromEntity();
 }

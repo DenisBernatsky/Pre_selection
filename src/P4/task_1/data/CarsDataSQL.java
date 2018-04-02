@@ -2,10 +2,7 @@ package P4.task_1.data;
 
 import P4.task_1.cars.BaseCar;
 import P4.task_1.utils.DBUtils;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
@@ -17,7 +14,7 @@ public class CarsDataSQL extends BaseData implements DataInterface{
     private DBUtils dbUtils = new DBUtils();
 
 
-    public ArrayList<BaseCar> getCarListFromSQL() {
+    public ArrayList<BaseCar> getCarListFromEntity() {
         ArrayList<HashMap<String, String>> mapListAllDBCars = getListMapFromDb();
         BaseCar car = null;
         ArrayList<BaseCar> carList = new ArrayList<>();
@@ -73,30 +70,5 @@ public class CarsDataSQL extends BaseData implements DataInterface{
             e.printStackTrace();
         }
         return 0;
-    }
-
-    @Override
-    public int getId() throws ParserConfigurationException, IOException, SAXException {
-        return 0;
-    }
-
-    @Override
-    public int getPrice() {
-        return 0;
-    }
-
-    @Override
-    public int getConsumption() {
-        return 0;
-    }
-
-    @Override
-    public String getName() {
-        return null;
-    }
-
-    @Override
-    public String getType() {
-        return null;
     }
 }

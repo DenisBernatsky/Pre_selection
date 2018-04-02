@@ -36,7 +36,7 @@ public class CarsDataXML extends BaseData implements DataInterface{
         return car;
     }
 
-    public ArrayList<BaseCar> getCarListFromXml() {
+    public ArrayList<BaseCar> getCarListFromEntity() {
         int carValuesCount = (new XmlReaderUtils(filePath)).getNumberOfNodes(LOCATOR_ALL_CARS);
         ArrayList<BaseCar> taxisCarsList = new ArrayList<>();
         for (int i=1; i < carValuesCount+1; i++){
@@ -46,31 +46,26 @@ public class CarsDataXML extends BaseData implements DataInterface{
         return taxisCarsList;
     }
 
-    @Override
     public int getId(){
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
         return (Integer.parseInt(info.findByXpath(String.format(LOCATOR_ID, id))));
     }
 
-    @Override
     public int getPrice() {
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
         return Integer.parseInt(info.findByXpath(String.format(LOCATOR_PRICE, id)));
     }
 
-    @Override
     public int getConsumption() {
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
         return Integer.parseInt(info.findByXpath(String.format(LOCATOR_CONSUMPTION, id)));
     }
 
-    @Override
     public String getName() {
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
         return info.findByXpath(String.format(LOCATOR_NAME, id));
     }
 
-    @Override
     public String getType() {
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
         return info.findByXpath(String.format(LOCATOR_TYPE, id));
