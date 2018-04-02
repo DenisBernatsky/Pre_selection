@@ -6,7 +6,7 @@ import java.util.Random;
 
 public class Lists {
 
-    private static int value = 1000000;
+    private static int value = 100000;
 
     public ArrayList<String> addElementsArrayList(){
         final long startTime = System.currentTimeMillis();
@@ -43,6 +43,18 @@ public class Lists {
         }
         final long endTime = System.currentTimeMillis();
         System.out.println("Total execution time for remove elements in ArrayList: " + (endTime - startTime) + "ms");
+
+    }
+
+    public void removeElementsLinkedList(LinkedList list){
+        final long startTime = System.currentTimeMillis();
+        for (int i = 0; i < list.size(); i++) {
+            if (i % 3 == 0) {
+                list.remove(i);
+            }
+        }
+        final long endTime = System.currentTimeMillis();
+        System.out.println("Total execution time for remove elements in LinkedList: " + (endTime - startTime) + "ms");
 
     }
 
