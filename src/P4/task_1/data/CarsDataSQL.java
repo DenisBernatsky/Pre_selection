@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Objects;
 
 public class CarsDataSQL extends BaseData implements DataInterface{
     private DBUtils dbUtils = new DBUtils();
@@ -20,10 +21,15 @@ public class CarsDataSQL extends BaseData implements DataInterface{
     private static final String SQL_ALL_VALUES = "SELECT * FROM CARS";
 
     public ArrayList<BaseCar> getCarListFromEntity() {
-        ArrayList<HashMap<String, String>> mapListAllDBCars = getListMapFromDb();
+        ArrayList<HashMap<String, String>> mapListAllDBCars = null;
+        try {
+            mapListAllDBCars = getListMapFromDb();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
         BaseCar car = null;
         ArrayList<BaseCar> carList = new ArrayList<>();
-        for (HashMap<String, String> map : mapListAllDBCars) {
+        for (HashMap<String, String> map : Objects.requireNonNull(mapListAllDBCars)) {
             for (Map.Entry<String, String> entry : map.entrySet()) {
                 if (entry.getKey().equals(STR_TYPE)){
                     car = createCarByType(entry.getValue());
@@ -47,21 +53,18 @@ public class CarsDataSQL extends BaseData implements DataInterface{
         return carList;
     }
 
-    private ArrayList<HashMap<String, String>> getListMapFromDb(){
+    private ArrayList<HashMap<String, String>> getListMapFromDb() throws SQLException {
         ResultSet result = dbUtils.getStatement(SQL_ALL_VALUES);
         ArrayList<HashMap<String, String>> mapListAllDBCars = new ArrayList<>();
-        try {
-            ResultSetMetaData metaData = result.getMetaData();
-            while (result.next()){
-                HashMap <String, String> dbResult = new HashMap<>();
-                for (int i = 1; i <= metaData.getColumnCount(); i++ ) {
-                      dbResult.put(metaData.getColumnName(i), result.getString(i));
-                   }
-                mapListAllDBCars.add(dbResult);
+        ResultSetMetaData metaData = result.getMetaData();
+        HashMap <String, String> dbResult = new HashMap<>();
+        while (result.next()){
+            for (int i = 1; i <= metaData.getColumnCount(); i++ ) {
+            dbResult.put(metaData.getColumnName(i), result.getString(i));
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
-                }
+            mapListAllDBCars.add(dbResult);
+        }
+        result.close();
         return mapListAllDBCars;
     }
 
