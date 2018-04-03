@@ -44,7 +44,6 @@ public class CarsDataSQL extends BaseData implements DataInterface{
             }
             carList.add(car);
         }
-
         return carList;
     }
 
