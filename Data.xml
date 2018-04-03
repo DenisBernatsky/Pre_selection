@@ -35,4 +35,18 @@
         <type>Minibus Car</type>
         <consumption>11</consumption>
     </car>
+    <car id="6">
+        <id>6</id>
+        <name>Mazda</name>
+        <price>23000</price>
+        <type>Minibus Car</type>
+        <consumption>15</consumption>
+    </car>
+    <car id="7">
+        <id>7</id>
+        <name>Citroen</name>
+        <price>9000</price>
+        <type>Passenger Car</type>
+        <consumption>14</consumption>
+    </car>
 </items>

@@ -5,6 +5,7 @@ import P4.task_1.cars.BaseCar;
 import P4.task_1.data.CarsDataSQL;
 import P4.task_1.data.CarsDataXML;
 import P4.task_1.taxis.Taxis;
+import P4.task_1.utils.DBUtils;
 
 import java.util.ArrayList;
 
@@ -18,14 +19,13 @@ public class Runner {
         CarsDataSQL dataSQL = new CarsDataSQL();
         Taxis taxis = new Taxis();
         ReadAndWriteInFile readAndWriteInFile = new ReadAndWriteInFile();
-        ArrayList<BaseCar> taxisCarsList = data.getCarListFromEntity();
-        taxis.getAllCarsInfo(taxisCarsList);
-
-        taxis.getAllCarsPrice(taxisCarsList);
-
-        taxis.getAllCarsPrice(taxis.searchByPrice(1000, 13000, taxisCarsList));
+        ArrayList<BaseCar> taxisCarsListXML = data.getCarListFromEntity();
+        taxis.getAllCarsInfo(taxisCarsListXML);
+        taxis.getAllCarsPrice(taxisCarsListXML);
+        taxis.getAllCarsPrice(taxis.searchByPrice(1000, 13000, taxisCarsListXML));
 
         ArrayList<BaseCar> taxisCarsListDB = dataSQL.getCarListFromEntity();
+        taxis.getAllCarsInfo(taxisCarsListDB);
         taxis.getAllCarsPrice(taxisCarsListDB);
         readAndWriteInFile.writeInFile(FILE_TXT_NAME, taxis.getAllCarsPrice(taxisCarsListDB));
 
