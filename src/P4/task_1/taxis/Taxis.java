@@ -1,9 +1,6 @@
 package P4.task_1.taxis;
 
 import P4.task_1.cars.BaseCar;
-import P4.task_1.cars.MinibusCar;
-import P4.task_1.cars.PassengerCar;
-import P4.task_1.cars.Truck;
 import P4.task_1.exceptions.CarExceptions;
 
 import java.util.ArrayList;
