@@ -50,7 +50,6 @@ public class DBUtils {
                 }
                 System.out.println("==============");
             }
-
         } catch (SQLException e) {
             e.printStackTrace();
         }
