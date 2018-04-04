@@ -2,14 +2,8 @@ package P4.task_1.cars;
 
 public class MinibusCar extends BaseCar {
 
-
-
-    public MinibusCar() {
-        super();
+    public MinibusCar(String name, int consumption, int price) {
+        super(name, "Minibus Car", consumption, price);
     }
 
-    @Override
-    public void getCarInfo() {
-        System.out.println("Get minibus car info");
-    }
 }

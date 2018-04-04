@@ -7,14 +7,14 @@ import P4.task_1.cars.Truck;
 
 class BaseData {
 
-    BaseCar createCarByType(String type){
+    BaseCar createCarByType(String type, String name, int consumption, int price){
         switch (type){
             case "Passenger Car": {
-                return new PassengerCar();}
+                return new PassengerCar(name, consumption, price);}
             case "Minibus Car": {
-                return new MinibusCar();}
+                return new MinibusCar(name, consumption, price);}
             case "Truck": {
-                return new Truck();}
+                return new Truck(name, consumption, price);}
             default:
                 throw new NullPointerException("Current car type is not found");
 

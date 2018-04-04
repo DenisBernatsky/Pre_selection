@@ -2,12 +2,8 @@ package P4.task_1.cars;
 
 public class Truck extends BaseCar {
 
-    public Truck() {
-        super();
+    public Truck(String name, int consumption, int price) {
+        super(name, "Truck", consumption, price);
     }
 
-    @Override
-    public void getCarInfo() {
-        System.out.println("Get truck car info");
-    }
 }

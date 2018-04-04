@@ -8,12 +8,11 @@ public class BaseCar {
     private int price;
 
     public BaseCar(String carName, String carType, int consumption, int price) {
-        this.carName = carName;
-        this.carType = carType;
-        this.consumption = consumption;
-        this.price = price;
+        this.setCarName(carName);
+        this.setCarType(carType);
+        this.setConsumption(consumption);
+        this.setPrice(price);
     }
-    public BaseCar(){}
 
     public String getCarName() {
         return carName;
@@ -27,7 +26,7 @@ public class BaseCar {
         return carType;
     }
 
-    public void setCarType(String carType) {
+    private void setCarType(String carType) {
         this.carType = carType;
     }
 
@@ -40,7 +39,7 @@ public class BaseCar {
     }
 
     public void getCarInfo(){
-        System.out.println("Get base car info");
+        System.out.println("Get " + carType + "car info");
     }
 
     public int getId() {

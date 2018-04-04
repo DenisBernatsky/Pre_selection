@@ -27,27 +27,32 @@ public class CarsDataSQL extends BaseData implements DataInterface{
         } catch (SQLException e) {
             e.printStackTrace();
         }
+
+        String name = null;
+        String type = null;
+        int price = 0;
+        int consumption = 0;
         BaseCar car = null;
+
         ArrayList<BaseCar> carList = new ArrayList<>();
         for (HashMap<String, String> map : Objects.requireNonNull(mapListAllDBCars)) {
             for (Map.Entry<String, String> entry : map.entrySet()) {
-                if (entry.getKey().equals(STR_TYPE)){
-                    car = createCarByType(entry.getValue());
-                        for (Map.Entry<String, String> dict : map.entrySet()){
-                            if (dict.getKey().equals(STR_TYPE)){
-                                car.setCarType(dict.getValue());}
-                            if (dict.getKey().equals(STR_NAME)){
-                                car.setCarName(dict.getValue());}
-                            if (dict.getKey().equals(STR_PRICE)){
-                                car.setPrice(Integer.parseInt(dict.getValue()));}
-                            if (dict.getKey().equals(STR_CONSUMPTION)){
-                                car.setConsumption(Integer.parseInt(dict.getValue()));}
-                            if (dict.getKey().equals(STR_ID)){
-                                car.setId(Integer.parseInt(dict.getValue()));
-                            }
-                        }
+                switch (entry.getKey()) {
+                    case STR_NAME:
+                        name = entry.getValue();
+                        break;
+                    case STR_TYPE:
+                        type = entry.getValue();
+                        break;
+                    case STR_PRICE:
+                        price = Integer.parseInt(entry.getValue());
+                        break;
+                    case STR_CONSUMPTION:
+                        consumption = Integer.parseInt(entry.getValue());
+                        break;
                 }
             }
+            car = createCarByType(type, name, consumption, price);
             carList.add(car);
         }
         return carList;

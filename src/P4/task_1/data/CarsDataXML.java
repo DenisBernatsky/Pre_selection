@@ -27,12 +27,8 @@ public class CarsDataXML extends BaseData implements DataInterface{
     private BaseCar createCar(String id) {
         this.id=id;
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
-        BaseCar car = createCarByType(info.findByXpath(String.format(LOCATOR_TYPE, id)));
+        BaseCar car = createCarByType(info.findByXpath(String.format(LOCATOR_TYPE, id)), getName(), getConsumption(), getPrice());
         car.setId(getId());
-        car.setCarName(getName());
-        car.setCarType(getType());
-        car.setConsumption(getConsumption());
-        car.setPrice(getPrice());
         return car;
     }
 
