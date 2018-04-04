@@ -32,6 +32,7 @@ public class CarsDataSQL extends BaseData implements DataInterface{
         String type = null;
         int price = 0;
         int consumption = 0;
+        int id = 0;
         BaseCar car = null;
 
         ArrayList<BaseCar> carList = new ArrayList<>();
@@ -50,9 +51,13 @@ public class CarsDataSQL extends BaseData implements DataInterface{
                     case STR_CONSUMPTION:
                         consumption = Integer.parseInt(entry.getValue());
                         break;
+                    case STR_ID:
+                        id = Integer.parseInt(entry.getValue());
+                        break;
                 }
             }
             car = createCarByType(type, name, consumption, price);
+            car.setId(id);
             carList.add(car);
         }
         return carList;
@@ -64,8 +69,12 @@ public class CarsDataSQL extends BaseData implements DataInterface{
         ResultSetMetaData metaData = result.getMetaData();
         HashMap <String, String> dbResult = new HashMap<>();
         while (result.next()){
-            for (int i = 1; i <= metaData.getColumnCount(); i++ ) {
-            dbResult.put(metaData.getColumnName(i), result.getString(i));
+            int h = metaData.getColumnCount();
+            for (int i = 1; i < metaData.getColumnCount(); i++ ) {
+                String a = metaData.getColumnName(i);
+                String d = result.getString(i);
+
+                dbResult.put(metaData.getColumnName(i), result.getString(i));
             }
             mapListAllDBCars.add(dbResult);
         }
