@@ -69,8 +69,32 @@ public class CarsDataSQL extends BaseData implements DataInterface{
         ResultSetMetaData metaData = result.getMetaData();
         HashMap <String, String> dbResult = new HashMap<>();
         while (result.next()){
-            int h = metaData.getColumnCount();
+            String carName;
+            String carType;
+            int consumption;
+            int id;
+            int price;
+
             for (int i = 1; i < metaData.getColumnCount(); i++ ) {
+
+                switch (metaData.getColumnName(i)) {
+                    case STR_NAME:
+                        carName = result.getString(i);
+                        break;
+                    case STR_TYPE:
+                        carType = result.getString(i);
+                        break;
+                    case STR_PRICE:
+                        price = Integer.parseInt(result.getString(i));
+                        break;
+                    case STR_CONSUMPTION:
+                        consumption = Integer.parseInt(result.getString(i));
+                        break;
+                    case STR_ID:
+                        id = Integer.parseInt(result.getString(i));
+                        break;
+                }
+
                 String a = metaData.getColumnName(i);
                 String d = result.getString(i);
 
