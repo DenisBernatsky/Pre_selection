@@ -20,12 +20,16 @@ public class CarsDataXML extends BaseData implements DataInterface{
     private String filePath;
     private String id;
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public CarsDataXML(String filePath) {
         this.filePath = filePath;
     }
     
     private BaseCar createCar(String id) {
-        this.id=id;
+        setId(id);
         XpathUtils info = (new XmlReaderUtils(filePath)).getNode(LOCATOR_ALL_ITEMS);
         BaseCar car = createCarByType(info.findByXpath(String.format(LOCATOR_TYPE, id)), getName(), getConsumption(), getPrice());
         car.setId(getId());
