@@ -15,8 +15,12 @@ public class CarsDataSQL extends BaseData implements DataInterface{
     private static final String SQL_ALL_VALUES = "SELECT * FROM CARS";
     private static final String DB_CREATE_URL = String.format("jdbc:derby:%s;create=true;user=%s;password=%s", DB_NAME, DB_LOGIN, DB_PASSWORD);
 
+    private static Connection getConnection() throws SQLException {
+        return  DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASSWORD);
+    }
+
     public ArrayList<BaseCar> getCarListFromEntity() throws SQLException {
-        Connection connection = DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASSWORD);
+        Connection connection = getConnection();
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(SQL_ALL_VALUES);
         ArrayList<BaseCar> carList = new ArrayList<>();
@@ -62,6 +66,7 @@ public class CarsDataSQL extends BaseData implements DataInterface{
                 statement.addBatch("INSERT INTO cars (NAME, TYPE, CONSUMPTION, PRICE) VALUES ('MAN', 'Truck', '24', '45080')");
                 statement.addBatch("INSERT INTO cars (NAME, TYPE, CONSUMPTION, PRICE) VALUES ('Mazda', 'Passenger Car', '11', '12700')");
                 statement.executeBatch();
+                connection.commit();
                 connection.close();
                 statement.close();
                 System.out.println("Data base is created");
@@ -75,12 +80,15 @@ public class CarsDataSQL extends BaseData implements DataInterface{
     }
 
     private boolean checkBdConnect(){
+        Connection con;
         try {
-            DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASSWORD);
+            con = getConnection();
+            con.close();
             return true;
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
+
         }
     }
 
