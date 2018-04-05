@@ -2,6 +2,7 @@ package P4.task_1.data;
 
 import P4.task_1.cars.BaseCar;
 import P4.task_1.enums.CarsDataDBEnum;
+import P4.task_1.utils.DBConnections;
 import org.apache.derby.jdbc.EmbeddedDriver;
 
 import java.sql.*;
@@ -9,19 +10,11 @@ import java.util.ArrayList;
 
 public class CarsDataSQL extends BaseData implements DataInterface{
 
-    private static final String DB_NAME = "taxis";
-    private static final String DB_URL = "jdbc:derby:" + DB_NAME;
-    private static final String DB_LOGIN = "admin";
-    private static final String DB_PASSWORD = "admin";
-    private static final String SQL_ALL_VALUES = "SELECT TYPE, NAME, PRICE, CONSUMPTION, ID FROM CARS";
-    private static final String DB_CREATE_URL = String.format("jdbc:derby:%s;create=true;user=%s;password=%s", DB_NAME, DB_LOGIN, DB_PASSWORD);
 
-    private static Connection getConnection() throws SQLException {
-        return  DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASSWORD);
-    }
+    private static final String SQL_ALL_VALUES = "SELECT TYPE, NAME, PRICE, CONSUMPTION, ID FROM CARS";
 
     public ArrayList<BaseCar> getCarListFromEntity() throws SQLException {
-        Connection connection = getConnection();
+        Connection connection = DBConnections.getConnection();
         Statement statement = connection.createStatement();
         ResultSet result = statement.executeQuery(SQL_ALL_VALUES);
         ArrayList<BaseCar> carList = new ArrayList<>();
@@ -52,7 +45,7 @@ public class CarsDataSQL extends BaseData implements DataInterface{
             Connection connection = null;
             try {
                 DriverManager.registerDriver(new EmbeddedDriver());
-                connection = DriverManager.getConnection(DB_CREATE_URL);
+                connection = DBConnections.getConnection();
                 Statement statement = connection.createStatement();
                 statement.executeUpdate("CREATE TABLE cars (ID int GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
                         "NAME varchar(255), TYPE varchar(255), CONSUMPTION varchar(255),  PRICE varchar(255))");
@@ -87,13 +80,11 @@ public class CarsDataSQL extends BaseData implements DataInterface{
 
     private boolean checkBdConnect(){
         Connection con;
-        try {
-            con = getConnection();
-            con.close();
-            return true;
-        } catch (SQLException e) {
-            e.printStackTrace();
+        con = DBConnections.getConnection();
+        if (con == null){
+            System.out.println("Not found connection");
             return false;
         }
+        return true;
     }
 }

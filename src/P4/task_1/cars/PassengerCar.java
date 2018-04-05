@@ -4,6 +4,8 @@ import P4.task_1.enums.CarTypesEnum;
 
 public class PassengerCar extends BaseCar {
 
+    private PassengerCar(){}
+
     public PassengerCar(String name, int consumption, int price) {
         super(name, CarTypesEnum.PASSENGER.getCarType(), consumption, price);
     }
