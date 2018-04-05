@@ -12,7 +12,7 @@ public class CarsDataSQL extends BaseData implements DataInterface{
     private static final String DB_URL = "jdbc:derby:" + DB_NAME;
     private static final String DB_LOGIN = "admin";
     private static final String DB_PASSWORD = "admin";
-    private static final String SQL_ALL_VALUES = "SELECT * FROM CARS";
+    private static final String SQL_ALL_VALUES = "SELECT TYPE, NAME, PRICE, CONSUMPTION, ID FROM CARS";
     private static final String DB_CREATE_URL = String.format("jdbc:derby:%s;create=true;user=%s;password=%s", DB_NAME, DB_LOGIN, DB_PASSWORD);
 
     private static Connection getConnection() throws SQLException {
@@ -43,15 +43,15 @@ public class CarsDataSQL extends BaseData implements DataInterface{
             carList.add(car);
         }
         connection.close();
-        statement.close();
     return carList;
     }
 
     public void createDB(){
         if (!checkBdConnect()){
+            Connection connection = null;
             try {
                 DriverManager.registerDriver(new EmbeddedDriver());
-                Connection connection = DriverManager.getConnection(DB_CREATE_URL);
+                connection = DriverManager.getConnection(DB_CREATE_URL);
                 Statement statement = connection.createStatement();
                 statement.executeUpdate("CREATE TABLE cars (ID int GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
                         "NAME varchar(255), TYPE varchar(255), CONSUMPTION varchar(255),  PRICE varchar(255))");
@@ -67,11 +67,16 @@ public class CarsDataSQL extends BaseData implements DataInterface{
                 statement.addBatch("INSERT INTO cars (NAME, TYPE, CONSUMPTION, PRICE) VALUES ('Mazda', 'Passenger Car', '11', '12700')");
                 statement.executeBatch();
                 connection.commit();
-                connection.close();
-                statement.close();
                 System.out.println("Data base is created");
             } catch (SQLException e) {
                 e.printStackTrace();
+            }
+            finally {
+                try {
+                    connection.close();
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
             }
         }
         else {
@@ -88,8 +93,6 @@ public class CarsDataSQL extends BaseData implements DataInterface{
         } catch (SQLException e) {
             e.printStackTrace();
             return false;
-
         }
     }
-
 }
