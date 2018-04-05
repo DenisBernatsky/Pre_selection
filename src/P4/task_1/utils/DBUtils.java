@@ -11,12 +11,10 @@ public class DBUtils {
     private static final String DB_PASSWORD = "admin";
     private static final String DB_CREATE_URL = String.format("jdbc:derby:%s;create=true;user=%s;password=%s", DB_NAME, DB_LOGIN, DB_PASSWORD);
 
-
     public void createDB(){
-        if (!this.checkBdStatus()){
+        if (!checkBdConnect()){
             try {
                 DriverManager.registerDriver(new EmbeddedDriver());
-                System.out.println(DB_CREATE_URL);
                 Connection connection = DriverManager.getConnection(DB_CREATE_URL);
                 Statement statement = connection.createStatement();
                 statement.executeUpdate("CREATE TABLE cars (ID int GENERATED ALWAYS AS IDENTITY (START WITH 1, INCREMENT BY 1), " +
@@ -44,7 +42,7 @@ public class DBUtils {
         }
     }
 
-    private boolean checkBdStatus(){
+    private boolean checkBdConnect(){
         try {
             DriverManager.getConnection(DB_URL, DB_LOGIN, DB_PASSWORD);
             return true;

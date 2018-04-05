@@ -37,10 +37,10 @@ public class Runner {
         taxis.getAllCarsPrice(taxisCarsListDB);
         String CarsPriceDB  = taxis.getAllCarsPrice(taxis.searchByPrice(10000, 19000, taxisCarsListDB));
 
-//      Write in txt file
+        // Write in txt file
         readAndWriteInFile.writeInFile(FILE_TXT_NAME, CarsPriceDB + " DB" + "\n" + CarsPriceXML + " XML");
 
-//      Read from txt file
+        // Read from txt file
         try {
             System.out.println(readAndWriteInFile.getTextFromFile(FILE_TXT_NAME));
         } catch (IOException e) {
