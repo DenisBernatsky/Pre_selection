@@ -1,5 +1,7 @@
 package P4.task_1.cars;
 
+import P4.task_1.enums.CarTypesEnum;
+
 public class MinibusCar extends BaseCar {
 
 

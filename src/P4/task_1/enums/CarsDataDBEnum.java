@@ -1,4 +1,4 @@
-package P4.task_1.data;
+package P4.task_1.enums;
 
 public enum CarsDataDBEnum {
     TYPE("TYPE"),

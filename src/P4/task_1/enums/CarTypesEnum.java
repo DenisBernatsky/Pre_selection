@@ -1,4 +1,4 @@
-package P4.task_1.cars;
+package P4.task_1.enums;
 
 public enum CarTypesEnum {
     MINIBUS("Minibus Car"),
