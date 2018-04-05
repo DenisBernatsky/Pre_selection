@@ -6,6 +6,16 @@ import P4.task_1.exceptions.CarExceptions;
 import java.util.ArrayList;
 
 public class Taxis {
+    private static int minPrice = 0;
+    private static int maxPrice = 100000;
+
+    private static int getMinPrice() {
+        return minPrice;
+    }
+
+    private static int getMaxPrice() {
+        return maxPrice;
+    }
 
     public String getAllCarsPrice(ArrayList<BaseCar> list){
         int price = 0;
@@ -25,8 +35,8 @@ public class Taxis {
     }
 
     public ArrayList<BaseCar> searchByPrice(int minPrice, int maxPrice , ArrayList<BaseCar> list){
-        if (minPrice < 0 || maxPrice > 100000){
-            throw new CarExceptions("Not correct price. Min price is 0 and max price 100000.");
+        if (minPrice < getMinPrice() || maxPrice > getMaxPrice()){
+            throw new CarExceptions("Not correct price. Min price is " + getMinPrice() + " and max price " + getMaxPrice());
         }
         ArrayList<BaseCar> result = new ArrayList<>();
         for (BaseCar element:list) {

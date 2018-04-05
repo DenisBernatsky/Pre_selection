@@ -1,2 +1,2 @@
 Cars price: 56200 USD DB
-Cars price: 40200 USD XML
+Cars price: 12000 USD XML

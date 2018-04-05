@@ -26,7 +26,7 @@ public class Runner {
         ArrayList<BaseCar> taxisCarsListXML = data.getCarListFromEntity();
         taxis.getAllCarsInfo(taxisCarsListXML);
         taxis.getAllCarsPrice(taxisCarsListXML);
-        String CarsPriceXML = taxis.getAllCarsPrice(taxis.searchByPrice(1000, 13000, taxisCarsListXML));
+        String CarsPriceXML = taxis.getAllCarsPrice(taxis.searchByPrice(10000, 13000, taxisCarsListXML));
 
         // SQL get data
         ArrayList<BaseCar> taxisCarsListDB = dataSQL.getCarListFromEntity();
