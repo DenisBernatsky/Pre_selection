@@ -2,9 +2,8 @@ package P4.task_1.cars;
 
 public class Truck extends BaseCar {
 
-
     public Truck(String name, int consumption, int price) {
-        super(name, CarTypes.TRUCK.getCarType(), consumption, price);
+        super(name, CarTypesEnum.TRUCK.getCarType(), consumption, price);
     }
 
 }

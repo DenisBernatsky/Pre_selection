@@ -33,7 +33,7 @@ public class ReadAndWriteInFileUtils {
             if(reader !=null){reader.close();}
         }
         return content;
-
-
     }
+
+
 }

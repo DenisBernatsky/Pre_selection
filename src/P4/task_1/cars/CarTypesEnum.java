@@ -1,15 +1,16 @@
 package P4.task_1.cars;
 
-public enum CarTypes {
+public enum CarTypesEnum {
     MINIBUS("Minibus Car"),
     TRUCK("Truck"),
-    PASSENGER("Passenger Ca");
+    PASSENGER("Passenger Car");
 
     private String carType;
 
-    CarTypes(String carType) {
+    CarTypesEnum(String carType) {
         this.carType = carType;
     }
+
     public String getCarType(){
         return carType;
     }
