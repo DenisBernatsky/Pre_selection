@@ -19,7 +19,6 @@ public class Runner {
         CarsDataXML data = new CarsDataXML(FILE_XML_NAME);
         CarsDataSQL dataSQL = new CarsDataSQL();
         Taxis taxis = new Taxis();
-        dataSQL.createDB();
         ReadAndWriteInFileUtils readAndWriteInFile = new ReadAndWriteInFileUtils();
 
         // XMl get data

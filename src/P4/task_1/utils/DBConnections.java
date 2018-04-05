@@ -1,5 +1,7 @@
 package P4.task_1.utils;
 
+import P4.task_1.data.CarsDataSQL;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,7 +25,16 @@ public class DBConnections {
             }
         }
         catch (SQLException e){
+            System.out.println("Data base not found. Start to create.");
             e.printStackTrace();
+            try {
+                con =  DriverManager.getConnection(DB_CREATE_URL);
+                new CarsDataSQL().createDB();
+                return con;
+
+            } catch (SQLException e1) {
+                e1.printStackTrace();
+            }
         }
         return con;
     }
