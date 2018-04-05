@@ -4,7 +4,6 @@ import P4.task_1.cars.BaseCar;
 import P4.task_1.data.CarsDataSQL;
 import P4.task_1.data.CarsDataXML;
 import P4.task_1.taxis.Taxis;
-import P4.task_1.utils.DBUtils;
 import P4.task_1.utils.ReadAndWriteInFileUtils;
 
 import java.io.IOException;
@@ -20,8 +19,7 @@ public class Runner {
         CarsDataXML data = new CarsDataXML(FILE_XML_NAME);
         CarsDataSQL dataSQL = new CarsDataSQL();
         Taxis taxis = new Taxis();
-        DBUtils dbUtils = new DBUtils();
-        dbUtils.createDB();
+        dataSQL.createDB();
         ReadAndWriteInFileUtils readAndWriteInFile = new ReadAndWriteInFileUtils();
 
         // XMl get data
