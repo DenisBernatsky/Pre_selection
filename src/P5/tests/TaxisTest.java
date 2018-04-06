@@ -27,5 +27,14 @@ public class TaxisTest extends BaseTest{
         }
     }
 
+    @Test(expectedExceptions = AssertionError.class)
+    @Parameters({"min", "max"})
+    public void testSearchNegative(int min, int max){
+        for (BaseCar car: taxis.searchByPrice(min, max, taxisCarsListXMLAndDB)) {
+            Assert.assertTrue(min > car.getPrice(), "Cars price less than min price."+ "\n Min price: " + min + "\n Actual result: "  + car.getPrice() + "\n");
+            Assert.assertTrue(car.getPrice() > max, "Cars price more than max price."+ "\n Max price: " + max + "\n Actual result: "  + car.getPrice() + "\n");
+        }
+    }
+
 
 }
