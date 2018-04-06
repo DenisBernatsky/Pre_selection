@@ -15,14 +15,15 @@ public class BaseTest {
     private static final String FILE_XML_NAME = "Data.xml";
     static Taxis taxis;
     static ArrayList<BaseCar> taxisCarsListXMLAndDB;
-    CarsDataSQL dataSQL;
+    static CarsDataSQL dataSQL;
+    static CarsDataXML dataXML;
 
     @BeforeSuite
     public void SuiteSetup(){
         ListUtils listUtils = new ListUtils();
         taxis = new Taxis();
         dataSQL = new CarsDataSQL();
-        CarsDataXML dataXML = new CarsDataXML(FILE_XML_NAME);
+        dataXML = new CarsDataXML(FILE_XML_NAME);
 
         ArrayList<BaseCar> taxisCarsListXml = dataXML.getCarListFromEntity();
         ArrayList<BaseCar> taxisCarsListDB = dataSQL.getCarListFromEntity();

@@ -22,4 +22,9 @@
             <class name="P5.tests.CarsDataSQLTest"/>
         </classes>
     </test>
+    <test name="CarsDataXMLTest">
+        <classes>
+            <class name="P5.tests.CarsDataXMLTest"/>
+        </classes>
+    </test>
 </suite>

@@ -20,10 +20,6 @@ public class CarsDataXML extends BaseData implements DataInterface {
     private String filePath;
     private String id;
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public CarsDataXML(String filePath) {
         this.filePath = filePath;
     }
@@ -44,6 +40,10 @@ public class CarsDataXML extends BaseData implements DataInterface {
             taxisCarsList.add(car);
         }
         return taxisCarsList;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public int getId(){
