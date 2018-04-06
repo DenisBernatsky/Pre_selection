@@ -1,6 +1,6 @@
-package P4.task_1.cars;
+package P5.cars;
 
-import P4.task_1.enums.CarTypesEnum;
+import P5.enums.CarTypesEnum;
 
 public class PassengerCar extends BaseCar {
 

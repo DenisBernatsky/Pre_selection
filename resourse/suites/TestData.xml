@@ -1,0 +1,12 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Suite for tests">
+    <test name="TaxisTest">
+        <parameter name="expect" value="86200"/>
+        <parameter name="min" value="10000"/>
+        <parameter name="max" value="20000"/>
+        <classes>
+            <class name="P5.tests.TaxisTest"/>
+        </classes>
+    </test>
+</suite>

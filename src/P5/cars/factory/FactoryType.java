@@ -1,9 +1,9 @@
-package P4.task_1.cars.factory;
+package P5.cars.factory;
 
-import P4.task_1.cars.BaseCar;
-import P4.task_1.cars.MinibusCar;
-import P4.task_1.cars.PassengerCar;
-import P4.task_1.cars.Truck;
+import P5.cars.BaseCar;
+import P5.cars.MinibusCar;
+import P5.cars.PassengerCar;
+import P5.cars.Truck;
 
 public class FactoryType {
     private String name;

@@ -1,4 +1,4 @@
-package P4.task_1.cars;
+package P5.cars;
 
 public class BaseCar {
     private String carName;
