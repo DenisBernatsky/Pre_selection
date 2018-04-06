@@ -1,7 +1,7 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Suite for tests">
-    <test name="TaxisTest1">
+    <test name="TaxisTest_1">
         <parameter name="expect" value="360560"/>
         <parameter name="min" value="1000"/>
         <parameter name="max" value="22000"/>
@@ -9,7 +9,7 @@
             <class name="P5.tests.TaxisTest"/>
         </classes>
     </test>
-    <test name="TaxisTest2">
+    <test name="TaxisTest_2">
         <parameter name="expect" value="360560"/>
         <parameter name="min" value="23000"/>
         <parameter name="max" value="72000"/>
