@@ -10,7 +10,7 @@
     <car id="2">
         <id>2</id>
         <name>Volvo</name>
-        <price>1200</price>
+        <price>12000</price>
         <type>Passenger Car</type>
         <consumption>8</consumption>
     </car>

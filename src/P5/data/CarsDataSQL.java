@@ -15,31 +15,36 @@ public class CarsDataSQL extends BaseData implements DataInterface {
 
     private static final String SQL_ALL_VALUES = "SELECT TYPE, NAME, PRICE, CONSUMPTION, ID FROM CARS";
 
-    public ArrayList<BaseCar> getCarListFromEntity() throws SQLException {
+    public ArrayList<BaseCar> getCarListFromEntity() {
         Connection connection = DBConnections.getConnection();
-        Statement statement = connection.createStatement();
-        ResultSet result = statement.executeQuery(SQL_ALL_VALUES);
+        Statement statement;
+
         ArrayList<BaseCar> carList = new ArrayList<>();
+        try {
+            statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(SQL_ALL_VALUES);
+            String carName;
+            String carType;
+            int consumption;
+            int id;
+            int price;
+            BaseCar car;
 
-        String carName;
-        String carType;
-        int consumption;
-        int id;
-        int price;
-        BaseCar car;
-
-        while (result.next()){
-            carName = result.getString(CarsDataDBEnum.NAME.getColumnName());
-            carType = result.getString(CarsDataDBEnum.TYPE.getColumnName());
-            id = result.getInt(CarsDataDBEnum.ID.getColumnName());
-            consumption = result.getInt(CarsDataDBEnum.CONSUMPTION.getColumnName());
-            price = result.getInt(CarsDataDBEnum.PRICE.getColumnName());
-            car = createCarByType(carType, carName, consumption, price);
-            car.setId(id);
-            carList.add(car);
+            while (result.next()) {
+                carName = result.getString(CarsDataDBEnum.NAME.getColumnName());
+                carType = result.getString(CarsDataDBEnum.TYPE.getColumnName());
+                id = result.getInt(CarsDataDBEnum.ID.getColumnName());
+                consumption = result.getInt(CarsDataDBEnum.CONSUMPTION.getColumnName());
+                price = result.getInt(CarsDataDBEnum.PRICE.getColumnName());
+                car = createCarByType(carType, carName, consumption, price);
+                car.setId(id);
+                carList.add(car);
+            }
         }
-        connection.close();
-    return carList;
+        catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return carList;
     }
 
     public void createDB(){

@@ -5,6 +5,7 @@ import P5.data.CarsDataSQL;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.sql.Statement;
 
 public class DBConnections {
 
@@ -39,4 +40,11 @@ public class DBConnections {
         return con;
     }
 
+    public static void closeConnection(){
+        try {
+            con.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
