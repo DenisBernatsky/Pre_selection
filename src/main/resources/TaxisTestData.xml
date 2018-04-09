@@ -1,0 +1,30 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+
+<suite name="Suite for tests">
+    <test name="TaxisTest">
+        <parameter name="expect" value="360560"/>
+        <parameter name="min" value="1000"/>
+        <parameter name="max" value="22000"/>
+        <classes>
+            <class name="tests.TaxisTest"/>
+        </classes>
+    </test>
+    <test name="TaxisTest_2">
+        <parameter name="expect" value="360560"/>
+        <parameter name="min" value="23000"/>
+        <parameter name="max" value="72000"/>
+        <classes>
+            <class name="tests.TaxisTest"/>
+        </classes>
+    </test>
+    <test name="CarsDataSQLTest">
+        <classes>
+            <class name="tests.CarsDataSQLTest"/>
+        </classes>
+    </test>
+    <test name="CarsDataXMLTest">
+        <classes>
+            <class name="tests.CarsDataXMLTest"/>
+        </classes>
+    </test>
+</suite>
