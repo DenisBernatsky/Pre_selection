@@ -13,12 +13,21 @@
             <version>6.14.2</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>RELEASE</version>
+        </dependency>
     </dependencies>
     <parent>
         <groupId>org.apache.derby</groupId>
         <artifactId>derby-project</artifactId>
         <version>10.14.1.0</version>
     </parent>
+    <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+    </properties>
     <artifactId>derby</artifactId>
     <name> Apache Derby Database Engine and Embedded JDBC Driver</name>
     <description> Contains the core Apache Derby database engine, which also includes the embedded JDBC driver.</description>
