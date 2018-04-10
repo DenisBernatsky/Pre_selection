@@ -1,6 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Suite for tests">
+    <listeners>
+        <listener class-name = "listeners.Listener" />
+    </listeners>
     <test name="TaxisTest">
         <parameter name="expect" value="360560"/>
         <parameter name="min" value="1000"/>
